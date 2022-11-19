@@ -7,10 +7,10 @@ import {
   Param,
   Delete,
   HttpCode,
-} from '@nestjs/common';
-import { ConnectionsService } from './connections.service';
-import { CreateConnectionDto } from './dto/create-connection.dto';
-import { UpdateConnectionDto } from './dto/update-connection.dto';
+} from '@nestjs/common'
+import { ConnectionsService } from './connections.service'
+import { CreateConnectionDto } from './dto/create-connection.dto'
+import { UpdateConnectionDto } from './dto/update-connection.dto'
 
 @Controller('connections')
 export class ConnectionsController {
@@ -21,17 +21,17 @@ export class ConnectionsController {
     @Body()
     CreateConnectionDto: CreateConnectionDto,
   ) {
-    return this.connectionsService.create(CreateConnectionDto);
+    return this.connectionsService.create(CreateConnectionDto)
   }
 
   @Get()
   findAll() {
-    return this.connectionsService.findAll();
+    return this.connectionsService.findAll()
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.connectionsService.findOne(+id);
+    return this.connectionsService.findOne(+id)
   }
 
   @Patch(':id')
@@ -40,12 +40,12 @@ export class ConnectionsController {
     @Body()
     UpdateConnectionDto: UpdateConnectionDto,
   ) {
-    return this.connectionsService.update(+id, UpdateConnectionDto);
+    return this.connectionsService.update(+id, UpdateConnectionDto)
   }
 
   @HttpCode(204)
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.connectionsService.remove(+id);
+    return this.connectionsService.remove(+id)
   }
 }

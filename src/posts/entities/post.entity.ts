@@ -1,29 +1,35 @@
-import { Interaction } from 'src/interactions/entities/interaction.entity';
-import { User } from 'src/users/entities/user.entity';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
+import { Interaction } from 'src/interactions/entities/interaction.entity'
+import { User } from 'src/users/entities/user.entity'
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm'
 
 @Entity()
 export class Post {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: number
 
   @Column()
-  dateTime: string;
+  dateTime: string
 
   @Column()
-  title: string;
+  title: string
 
   @Column()
-  description: string;
+  description: string
 
   @Column()
-  area: string;
+  area: string
 
   @Column()
-  image: string;
+  image: string
 
   @ManyToOne(() => User, (user) => user.posts)
-  user: User;
+  user: User
 
   @OneToMany(() => Interaction, (interaction) => interaction.post)
   interactions: Interaction[]

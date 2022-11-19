@@ -1,52 +1,52 @@
-import { Connection } from 'src/connections/entities/connection.entity';
-import { Interaction } from 'src/interactions/entities/interaction.entity';
-import { Post } from 'src/posts/entities/post.entity';
+import { Connection } from 'src/connections/entities/connection.entity'
+import { Interaction } from 'src/interactions/entities/interaction.entity'
+import { Post } from 'src/posts/entities/post.entity'
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
   OneToMany,
   ManyToOne,
-} from 'typeorm';
+} from 'typeorm'
 
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: number
 
   @Column()
-  name: string;
+  name: string
 
   @Column()
-  lastName: string;
+  lastName: string
 
   @Column()
-  email: string;
+  email: string
 
   @Column()
-  password: string;
+  password: string
 
   @Column()
-  phone: string;
+  phone: string
 
   @Column()
-  cpf: string;
+  cpf: string
 
   @Column()
-  biography: string;
+  biography: string
 
   @Column()
-  profileImage: string;
+  profileImage: string
 
   @OneToMany(() => Post, (post) => post.user)
-  posts: Post[];
+  posts: Post[]
 
   @OneToMany(() => Interaction, (interaction) => interaction.user)
-  interactions: Interaction[];
+  interactions: Interaction[]
 
   @OneToMany(() => Connection, (connection) => connection.user1)
-  connections: Connection[];
+  connections: Connection[]
 
   @OneToMany(() => Connection, (connection) => connection.user2)
-  connections2: Connection[];
+  connections2: Connection[]
 }

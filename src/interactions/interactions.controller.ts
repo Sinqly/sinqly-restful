@@ -7,10 +7,10 @@ import {
   Param,
   Delete,
   HttpCode,
-} from '@nestjs/common';
-import { InteractionsService } from './interactions.service';
-import { CreateInteractionDto } from './dto/create-interaction.dto';
-import { UpdateInteractionDto } from './dto/update-interaction.dto';
+} from '@nestjs/common'
+import { InteractionsService } from './interactions.service'
+import { CreateInteractionDto } from './dto/create-interaction.dto'
+import { UpdateInteractionDto } from './dto/update-interaction.dto'
 
 @Controller('interactions')
 export class InteractionsController {
@@ -21,17 +21,17 @@ export class InteractionsController {
     @Body()
     CreateInteractionDto: CreateInteractionDto,
   ) {
-    return this.interactionsService.create(CreateInteractionDto);
+    return this.interactionsService.create(CreateInteractionDto)
   }
 
   @Get()
   findAll() {
-    return this.interactionsService.findAll();
+    return this.interactionsService.findAll()
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.interactionsService.findOne(+id);
+    return this.interactionsService.findOne(+id)
   }
 
   @Patch(':id')
@@ -40,12 +40,12 @@ export class InteractionsController {
     @Body()
     UpdateInteractionDto: UpdateInteractionDto,
   ) {
-    return this.interactionsService.update(+id, UpdateInteractionDto);
+    return this.interactionsService.update(+id, UpdateInteractionDto)
   }
 
   @HttpCode(204)
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.interactionsService.remove(+id);
+    return this.interactionsService.remove(+id)
   }
 }
