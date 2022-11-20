@@ -25,6 +25,18 @@ export class PostsService {
     return this.postRepo.findOne({ where: { id: id } })
   }
 
+  async findByUserId(id: number) {
+    return this.postRepo.find().then((posts) => {
+      const arrayPosts: Post[] = []
+      posts.map((post) => {
+        if (post.user.id === id) {
+          arrayPosts.push(post)
+        }
+      })
+      return arrayPosts
+    })
+  }
+
   async update(id: number, UpdatePostDto: UpdatePostDto) {
     const updateResult = await this.postRepo.update(id, UpdatePostDto)
     if (!updateResult.affected) {
