@@ -6,6 +6,7 @@ import {
   PrimaryGeneratedColumn,
   ManyToOne,
   OneToMany,
+  JoinColumn,
 } from 'typeorm'
 
 @Entity()
@@ -28,7 +29,8 @@ export class Post {
   @Column()
   image: string
 
-  @ManyToOne(() => User, (user) => user.posts)
+  @ManyToOne(() => User, (user) => user.posts, { eager: true })
+  @JoinColumn()
   user: User
 
   @OneToMany(() => Interaction, (interaction) => interaction.post)

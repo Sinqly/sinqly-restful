@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsNumber, IsString, MaxLength } from 'class-validator'
+import { User } from 'src/users/entities/user.entity'
 
 export class CreatePostDto {
   @MaxLength(100)
@@ -25,4 +26,8 @@ export class CreatePostDto {
   @IsString()
   @IsNotEmpty()
   image: string
+
+  @IsString()
+  @IsNotEmpty()
+  user: User
 }
