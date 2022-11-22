@@ -7,15 +7,18 @@ import {
   Param,
   Delete,
   HttpCode,
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common'
 import { UsersService } from './users.service'
 import { CreateUserDto } from './dto/create-user.dto'
 import { UpdateUserDto } from './dto/update-user.dto'
+import { User } from './entities/user.entity'
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {
-    this.usersService.doSomeQuery();
+    this.usersService.doSomeQuery()
   }
 
   @Post()
@@ -34,6 +37,35 @@ export class UsersController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(+id)
+  }
+
+  @Post('/validation')
+  async findByEmailAndPassword(
+    @Body()
+    validationUser: User,
+  ) {
+    try {
+      const { email, password } = validationUser
+      const user = await this.usersService.findByEmailAndPassword(
+        email,
+        password,
+      )
+      return {
+        status: true,
+        user: user,
+      }
+    } catch (error) {
+      throw new HttpException(
+        {
+          status: HttpStatus.FORBIDDEN,
+          error: 'User not found!',
+        },
+        HttpStatus.FORBIDDEN,
+        {
+          cause: error,
+        },
+      )
+    }
   }
 
   @Patch(':id')

@@ -18,10 +18,10 @@ export class UsersService {
   }
 
   async doSomeQuery() {
-    const user = this.userRepo.create({ 
+    const user = this.userRepo.create({
       name: 'teste',
       email: 'teste@gmail.com',
-      password: 'teste'
+      password: 'teste',
     })
     return this.userRepo.save(user)
   }
@@ -32,6 +32,24 @@ export class UsersService {
 
   findOne(id: number) {
     return this.userRepo.findOne({ where: { id: id } })
+  }
+
+  async findByEmailAndPassword(email: string, password: string) {
+    try {
+      const user = await this.userRepo.find({
+        where: { email: email, password: password },
+      })
+      if (user.length === 0) throw 'User not found!'
+      return user
+    } catch (error) {
+      throw Error(
+        'There was an error validating user with: ' +
+          email +
+          ' ERROR: ' +
+          error.message,
+      )
+    }
+    return
   }
 
   async update(id: number, UpdateUserDto: UpdateUserDto) {
@@ -48,5 +66,4 @@ export class UsersService {
       throw new EntityNotFoundError(User, id)
     }
   }
-
 }
