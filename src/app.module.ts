@@ -26,4 +26,5 @@ import { UsersModule } from './users/users.module'
     ConnectionsModule,
   ],
 })
+
 export class AppModule {}

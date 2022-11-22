@@ -17,28 +17,28 @@ export class User {
   @Column()
   name: string
 
-  @Column()
+  @Column({nullable: true })
   lastName: string
 
-  @Column()
+  @Column({nullable: true })
   username: string
 
-  @Column()
+  @Column({nullable: true })
   email: string
 
-  @Column()
+  @Column({nullable: true })
   password: string
 
-  @Column()
+  @Column({nullable: true })
   phone: string
 
-  @Column()
+  @Column({nullable: true })
   cpf: string
 
-  @Column()
+  @Column({nullable: true })
   biography: string
 
-  @Column()
+  @Column({nullable: true })
   profileImage: string
 
   @OneToMany(() => Post, (post) => post.user)
