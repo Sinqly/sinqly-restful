@@ -17,6 +17,15 @@ export class UsersService {
     return this.userRepo.save(user)
   }
 
+  async doSomeQuery() {
+    const user = this.userRepo.create({ 
+      name: 'teste',
+      email: 'teste@gmail.com',
+      password: 'teste'
+    })
+    return this.userRepo.save(user)
+  }
+
   findAll() {
     return this.userRepo.find()
   }
@@ -39,4 +48,5 @@ export class UsersService {
       throw new EntityNotFoundError(User, id)
     }
   }
+
 }

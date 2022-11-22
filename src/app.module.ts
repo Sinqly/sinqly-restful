@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
+import { DataSource } from 'typeorm'
 import { ConnectionsModule } from './connections/connections.module'
 import { Connection } from './connections/entities/connection.entity'
 import { Interaction } from './interactions/entities/interaction.entity'
