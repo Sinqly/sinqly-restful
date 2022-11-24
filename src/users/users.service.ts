@@ -20,6 +20,8 @@ export class UsersService {
   async doSomeQuery() {
     const user = this.userRepo.create({
       name: 'teste',
+      username: 'tester',
+      biography: 'test',
       email: 'teste@gmail.com',
       password: 'teste',
     })
@@ -32,6 +34,12 @@ export class UsersService {
 
   findOne(id: number) {
     return this.userRepo.findOne({ where: { id: id } })
+  }
+
+  async findByUsername(username: string) {
+    const users = await this.userRepo.find({ where: { username: username } })
+    const user = users[0]
+    return user
   }
 
   async findByEmailAndPassword(email: string, password: string) {
