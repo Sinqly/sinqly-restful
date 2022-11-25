@@ -7,6 +7,7 @@ import {
   PrimaryGeneratedColumn,
   OneToMany,
   ManyToOne,
+  Unique,
 } from 'typeorm'
 
 @Entity()
@@ -20,7 +21,7 @@ export class User {
   @Column({ nullable: true })
   lastName: string
 
-  @Column({ nullable: true })
+  @Column({ nullable: false, unique: true })
   username: string
 
   @Column({ nullable: true })

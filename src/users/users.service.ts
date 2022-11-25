@@ -17,16 +17,16 @@ export class UsersService {
     return this.userRepo.save(user)
   }
 
-  async doSomeQuery() {
-    const user = this.userRepo.create({
-      name: 'teste',
-      username: 'tester',
-      biography: 'test',
-      email: 'teste@gmail.com',
-      password: 'teste',
-    })
-    return this.userRepo.save(user)
-  }
+    // async doSomeQuery() {
+    //   const user = this.userRepo.create({
+    //     name: 'teste',
+    //     username: 'tester',
+    //     biography: 'test',
+    //     email: 'teste@gmail.com',
+    //     password: 'teste',
+    //   })
+    //   return this.userRepo.save(user)
+    // }
 
   findAll() {
     return this.userRepo.find()
@@ -61,11 +61,13 @@ export class UsersService {
   }
 
   async update(id: number, UpdateUserDto: UpdateUserDto) {
-    const updateResult = await this.userRepo.update(id, UpdateUserDto)
-    if (!updateResult.affected) {
+    const user = this.userRepo.findOne({ where: { id: id } })
+    try {
+      this.userRepo.update(id, UpdateUserDto)
+      return user
+    } catch (err) {
       throw new EntityNotFoundError(User, id)
     }
-    return this.userRepo.findOne({ where: { id: id } })
   }
 
   async remove(id: number) {
