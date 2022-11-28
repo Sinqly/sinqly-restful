@@ -61,12 +61,15 @@ export class UsersService {
   }
 
   async update(id: number, UpdateUserDto: UpdateUserDto) {
-    const user = this.userRepo.findOne({ where: { id: id } })
+    const user = await this.userRepo.findOne({ where: { id: id } })
     try {
-      this.userRepo.update(id, UpdateUserDto)
-      return user
-    } catch (err) {
-      throw new EntityNotFoundError(User, id)
+      const updatedUser = await this.userRepo.update(id, {
+        ...user,
+        ...UpdateUserDto,
+      })
+      return UpdateUserDto
+    } catch (error) {
+      throw new Error()
     }
   }
 
