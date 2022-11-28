@@ -10,23 +10,23 @@ export class UsersService {
   constructor(
     @InjectRepository(User)
     private userRepo: Repository<User>,
-  ) {}
+  ) { }
 
   create(CreateUserDto: CreateUserDto) {
     const user = this.userRepo.create(CreateUserDto)
     return this.userRepo.save(user)
   }
 
-    // async doSomeQuery() {
-    //   const user = this.userRepo.create({
-    //     name: 'teste',
-    //     username: 'tester',
-    //     biography: 'test',
-    //     email: 'teste@gmail.com',
-    //     password: 'teste',
-    //   })
-    //   return this.userRepo.save(user)
-    // }
+  async doSomeQuery() {
+    const user = this.userRepo.create({
+      name: 'teste',
+      username: 'tester',
+      biography: 'test',
+      email: 'teste@gmail.com',
+      password: 'teste',
+    })
+    return this.userRepo.save(user)
+  }
 
   findAll() {
     return this.userRepo.find()
@@ -52,9 +52,9 @@ export class UsersService {
     } catch (error) {
       throw Error(
         'There was an error validating user with: ' +
-          email +
-          ' ERROR: ' +
-          error.message,
+        email +
+        ' ERROR: ' +
+        error.message,
       )
     }
     return

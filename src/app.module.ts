@@ -16,7 +16,7 @@ import { UsersModule } from './users/users.module'
       type: 'postgres',
       port: 5432,
       username: 'postgres',
-      password: 'postgres',
+      password: 'senai',
       database: 'sinqly',
       synchronize: true,
       entities: [User, Post, Interaction, Connection],
